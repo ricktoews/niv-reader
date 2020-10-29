@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+.App {
+}
+
+.App-header {
+  background-color: #282c34;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.passage-selector {
+  display: flex;
+  justify-content: center;
+
+  input {
+    background-color: black;
+    color: white;
+  }
+  button {
+    background-color: black;
+    color: white;
+  }
+
+  #input-book {
+    width: 100px;
+  }
+  #input-chapter {
+    width: 30px;
+  }
+}
+
+.passage-wrapper {
+  margin: 20px;
+
+  font-family: Roboto;
+  font-size: 10pt;
+  line-height: 1.5;
+
+  & > div {
+    padding-bottom: 15px;
+  }
+
+  .verse-ref {
+    color:#666;
+  }
+
+  .verse-text {
+    color:#333;
+    font-weight: bold;
+  }
+}
