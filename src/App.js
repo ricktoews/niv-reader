@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import './App.scss';
+import Autocomplete from './components/Autocomplete';
+import SelectInteger from './components/SelectInteger';
+import Popup from './components/Popup';
+const bookData = require('./data/book-data')[0];
 
 function Reference(props) {
   return <div>
@@ -28,9 +32,11 @@ function PassageSelector(props) {
   };
 
   return <div className="passage-selector">
+{/*
     <input id="input-book" type="text" onChange={handleBookInput} size="10" />
     <input id="input-chapter" onChange={handleChapterInput} type="number" size="3" />
     <button id="input-select" onClick={handleSelect}>Go</button>
+*/}
   </div>;
 }
 
@@ -63,16 +69,36 @@ function PassageLayout(props) {
 
 
 function App() {
+  const [book, setBook] = useState('');
+  const [chapter, setChapter] = useState(0);
+  const [maxChapter, setMaxChapter] = useState(0);
   const [reference, setReference] = useState({ book: 'Revelation', chapter: 11 });
 
   const updateReference = (book, chapter) => {
     setReference({ book, chapter });
   }
 
+  const setInteger = input => {
+    console.log('chapter', input);
+    setChapter(input);
+    setReference({ ...reference, chapter: input });
+  }
+
+  const setSelection = input => {
+    console.log('selection', input);
+    setBook(input);
+    setMaxChapter(bookData[input]);
+    setReference({ book: input, chapter: 1 });
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <Reference book={reference.book} chapter={reference.chapter} />
+        <Popup width="300" height="300">
+          <Autocomplete setSelection={setSelection} data={Object.keys(bookData)} />
+          { book > '' ? <SelectInteger setInteger={setInteger} maxValue={maxChapter} /> : null }
+        </Popup>
       </header>
       <PassageLayout reference={updateReference} />
     </div>
