@@ -107,12 +107,18 @@ function App() {
     setReference({ book: input, chapter: 1 });
   }
 
+  const autoCompleteStyle = {
+    marginTop: '10px',
+    color: 'black',
+    fontSize: '11pt'
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <Reference book={reference.book} chapter={reference.chapter} popupSetReference={popupSetReference} />
-        { showPopup ? (<Popup width="300" height="300">
-          { !book ? <Autocomplete setSelection={setSelection} data={Object.keys(bookData)} /> : null }
+        { showPopup ? (<Popup width="300" height="275">
+          { !book ? <Autocomplete style={autoCompleteStyle} prompt={'Book:'} setSelection={setSelection} data={Object.keys(bookData)} /> : null }
           { !chapter && book > '' ? <SelectInteger setInteger={setInteger} maxValue={maxChapter} /> : null }
         </Popup>) : null }
       </header>

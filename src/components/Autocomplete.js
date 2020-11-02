@@ -11,7 +11,7 @@ function Autocomplete(props) {
 	useEffect(() => {
 		var field = document.querySelector('.autocomplete-input');
 
-		setMatchTop(field.offsetHeight + 3);
+		setMatchTop(field.offsetTop + field.offsetHeight + 3);
 		setMatchLeft(field.offsetLeft);
 	}, []);
 
@@ -32,9 +32,11 @@ function Autocomplete(props) {
 		setShowMatches(current_matches.length <= 7);
 	};
 
+	const { style } = props;
+
 	return (
-	  <div>
-	    <input type="text" className="autocomplete-input" onChange={handleItemInput} />
+	  <div style={style}>
+	    {props.prompt} <input type="text" className="autocomplete-input" onChange={handleItemInput} />
 	    <ul style={{ display: showMatches ? 'block' : 'none', top: matchTop, left: matchLeft }} className="autocomplete-matches">
 	      {matches.map((m, key) => {
 	        return <li key={key} onClick={handleItemClick} data-item={m}>{m}</li>;
