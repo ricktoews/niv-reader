@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import './App.scss';
 import Autocomplete from './components/Autocomplete';
@@ -8,7 +8,7 @@ const bookData = require('./data/book-data')[0];
 
 function Reference(props) {
   return <div>
-    <span className="ref">{props.book} {props.chapter}</span>
+    <span onClick={props.popupSetReference} className="ref">{props.book} {props.chapter}</span>
   </div>;
 }
 
@@ -48,6 +48,14 @@ function Verse(props) {
 
 function PassageLayout(props) {
   const [passage, setPassage] = useState([]);
+  const { book, chapter } = props;
+
+  useEffect(() => {
+    if (book && chapter) {
+      handleSelectPassage(book, chapter);
+    }
+  }, [book, chapter]);
+
   const handleSelectPassage = (book, chapter) => {
     props.reference(book, chapter);
     fetch(`http://memorize.toewsweb.net/rest.php/getpassage/${book}/${chapter}`)
@@ -73,14 +81,22 @@ function App() {
   const [chapter, setChapter] = useState(0);
   const [maxChapter, setMaxChapter] = useState(0);
   const [reference, setReference] = useState({ book: 'Revelation', chapter: 11 });
+  const [showPopup, setShowPopup] = useState(true);
 
   const updateReference = (book, chapter) => {
     setReference({ book, chapter });
   }
 
+  const popupSetReference = () => {
+    setBook('');
+    setChapter(0);
+    setShowPopup(true);
+  }
+
   const setInteger = input => {
     console.log('chapter', input);
     setChapter(input);
+    setShowPopup(false);
     setReference({ ...reference, chapter: input });
   }
 
@@ -94,13 +110,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Reference book={reference.book} chapter={reference.chapter} />
-        <Popup width="300" height="300">
-          <Autocomplete setSelection={setSelection} data={Object.keys(bookData)} />
-          { book > '' ? <SelectInteger setInteger={setInteger} maxValue={maxChapter} /> : null }
-        </Popup>
+        <Reference book={reference.book} chapter={reference.chapter} popupSetReference={popupSetReference} />
+        { showPopup ? (<Popup width="300" height="300">
+          { !book ? <Autocomplete setSelection={setSelection} data={Object.keys(bookData)} /> : null }
+          { !chapter && book > '' ? <SelectInteger setInteger={setInteger} maxValue={maxChapter} /> : null }
+        </Popup>) : null }
       </header>
-      <PassageLayout reference={updateReference} />
+      <PassageLayout reference={updateReference} book={book} chapter={chapter} />
     </div>
   );
 }
