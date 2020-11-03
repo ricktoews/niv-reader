@@ -43,7 +43,7 @@ function App() {
   const autoCompleteStyle = {
     marginTop: '10px',
     color: 'black',
-    fontSize: '11pt'
+    fontSize: '1em'
   };
 
   const handleLeft = () => {
@@ -64,7 +64,7 @@ function App() {
         <ChevronIcon direction="left" handleClick={handleLeft} />
         <Reference book={reference.book} chapter={reference.chapter} popupSetReference={popupSetReference} />
         { showPopup ? (<Popup width="300" height="275">
-          { !book ? <Autocomplete style={autoCompleteStyle} prompt={'Book:'} setSelection={setSelection} data={Object.keys(bookData)} /> : null }
+          { !book ? <Autocomplete style={autoCompleteStyle} prompt={'Book'} setSelection={setSelection} data={Object.keys(bookData)} /> : null }
           { !chapter && book > '' ? <SelectInteger setInteger={setInteger} maxValue={maxChapter} /> : null }
         </Popup>) : null }
         <ChevronIcon direction="right" handleClick={handleRight} />

@@ -8,12 +8,12 @@
   top: 0;
   width: 100vw;
   background-color: #282c34;
-  height: 30px;
+  height: 60px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(20px + 2vmin);
   color: white;
 }
 
@@ -40,10 +40,10 @@
 
 .passage-wrapper {
   margin: 20px;
-  margin-top: 50px;
+  margin-top: 80px;
 
   font-family: Roboto;
-  font-size: 10pt;
+  font-size: 1.0em;
   line-height: 1.5;
 
   & > div {
@@ -51,7 +51,18 @@
   }
 
   .verse-ref {
-    color:#666;
+    font-size: .8em;
+    width: 22px;
+    height: 22px;
+    margin-top: 4px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: #8D66B9;
+    color: white;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .verse-text {
@@ -59,3 +70,17 @@
     font-weight: bold;
   }
 }
+
+/* ChevronIcon */
+.chevron {
+  width: 50px;
+  height: 50px;
+  margin: 4px;
+  border-radius: 50%;
+  background-color: #8D66B9;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
