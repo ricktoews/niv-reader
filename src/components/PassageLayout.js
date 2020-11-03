@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+/*
 function PassageSelector(props) {
   const [book, setBook] = useState('');
   const [chapter, setChapter] = useState('');
@@ -20,17 +21,13 @@ function PassageSelector(props) {
   };
 
   return <div className="passage-selector">
-{/*
-    <input id="input-book" type="text" onChange={handleBookInput} size="10" />
-    <input id="input-chapter" onChange={handleChapterInput} type="number" size="3" />
-    <button id="input-select" onClick={handleSelect}>Go</button>
-*/}
   </div>;
 }
+*/
 
 function Verse(props) {
-  return <div>
-    <span className="verse-ref">{props.verse}</span>. <span className="verse-text">{props.text}</span>
+  return <div style={{display: 'flex' }}>
+    <div className="verse-ref">{props.verse}</div> <div className="verse-text">{props.text}</div>
   </div>;
 }
 
@@ -55,7 +52,6 @@ function PassageLayout(props) {
   }
 
   return <div className="content-wrapper">
-    <PassageSelector select={handleSelectPassage} />
     <div className="passage-wrapper">
     { passage.map(p => {
         return <Verse book={p.book} chapter={p.chapter} verse={p.verse} text={p.text} />

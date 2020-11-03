@@ -19,8 +19,8 @@ function SelectInteger(props) {
 	const [integers, setIntegers] = useState(items);
 
 	return (
-	<div style={{position: 'absolute', top: '50px' }}>
-	  <div style={{height: '200px', overflowY: 'scroll', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+	<div>
+	  <div style={{ height: '300px', overflowY: 'scroll', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
 	  {integers.map(i => <IntegerElement setInteger={props.setInteger} item={i} />)}
 	  </div>
 	</div>

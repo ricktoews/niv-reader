@@ -9,7 +9,7 @@ function Popup(props) {
 
 	return (
 	  <div className="popup-container">
-	    <div style={popupStyle} className="popup">
+	    <div className="popup">
               {props.children}
 	    </div>
 	  </div>

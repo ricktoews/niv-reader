@@ -36,7 +36,7 @@ function Autocomplete(props) {
 
 	return (
 	  <div style={style}>
-	    {props.prompt} <input type="text" className="autocomplete-input" onChange={handleItemInput} />
+	    <input type="text" placeholder={props.prompt} className="autocomplete-input" onChange={handleItemInput} />
 	    <ul style={{ display: showMatches ? 'block' : 'none', top: matchTop, left: matchLeft }} className="autocomplete-matches">
 	      {matches.map((m, key) => {
 	        return <li key={key} onClick={handleItemClick} data-item={m}>{m}</li>;
