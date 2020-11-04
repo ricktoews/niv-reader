@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
 
+$header-footer-color: #282c34;
+$button-color: #8D66B9;
+$header-text-color: #ffffff;
+$button-text-color: #ffffff;
+$verse-text-color: #333;
+
 .App {
 }
 
@@ -8,62 +14,45 @@
   position: fixed;
   top: 0;
   width: 100vw;
-  background-color: #282c34;
+  background-color: $header-footer-color;
   height: 60px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: calc(20px + 2vmin);
-  color: white;
+  color: $header-text-color;
 }
 
 footer {
   position: fixed;
   bottom: 0;
   width: 100vw;
-  background-color: #282c34;
+  background-color: $header-footer-color;
   height: 60px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   font-size: calc(20px + 2vmin);
-  color: white;
+  color: $header-text-color;
 }
 
-.passage-selector {
-  display: flex;
-  justify-content: center;
 
-  input {
-    background-color: black;
-    color: white;
-  }
-  button {
-    background-color: black;
-    color: white;
-  }
 
-  #input-book {
-    width: 100px;
-  }
-  #input-chapter {
-    width: 30px;
-  }
-}
-
+/*
+    PassageLayout
+*/
 .passage-wrapper {
-  margin: 20px;
-  margin-top: 80px;
-  margin-bottom: 60px;
+  margin: 80px 20px;
 
   font-family: Roboto;
   font-size: 1.0em;
   line-height: 1.5;
 
-  & > div {
-    padding-bottom: 15px;
+  .verse-wrapper {
+    display: flex;
+    padding: 10px 0;
   }
 
   .verse-ref {
@@ -73,8 +62,8 @@ footer {
     margin-top: 4px;
     margin-right: 10px;
     border-radius: 50%;
-    background-color: #8D66B9;
-    color: white;
+    background-color: $button-color;
+    color: $button-text-color;
     flex-shrink: 0;
     display: flex;
     justify-content: center;
@@ -82,7 +71,7 @@ footer {
   }
 
   .verse-text {
-    color:#333;
+    color: $verse-text-color;
     font-weight: bold;
   }
 }
@@ -100,7 +89,7 @@ footer {
   width: 100vw;
   height: 100vh;
   background-color: transparent;
-//	backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
   display: flex;
   justify-content: center;
 }
@@ -119,7 +108,7 @@ footer {
   height: 50px;
   margin: 4px;
   border-radius: 50%;
-  background-color: #8D66B9;
+  background-color: $button-color;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -157,8 +146,8 @@ footer {
   }
 
   li {
-    background-color: #8D66B9;
-    color: white;
+    background-color: $button-color;
+    color: $button-text-color;
     margin: 3px;
     border-radius: 30px;
     padding: .25em .5em;
@@ -186,7 +175,7 @@ footer {
 
 .integer-element {
   border-radius: 50%;
-  background-color: #8D66B9;
+  background-color: $button-color;
 }
 
 .integer-element {
