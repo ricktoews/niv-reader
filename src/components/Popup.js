@@ -1,5 +1,5 @@
 import React from 'react';
-import './Popup.scss';
+//import './Popup.scss';
 
 function Popup(props) {
 	const popupStyle = {
@@ -7,8 +7,12 @@ function Popup(props) {
 		height: props.height + 'px'
 	};
 
+	const capture = e => {
+		console.log('yep, got here');
+	}
+
 	return (
-	  <div className="popup-container">
+	  <div onClick={capture} className="popup-container">
 	    <div className="popup">
               {props.children}
 	    </div>

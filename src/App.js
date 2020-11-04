@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { BrowserRouter, withRouter } from 'react-router-dom';
 import './App.scss';
 import ChevronIcon from './components/ChevronIcon';
 import PassageLayout from './components/PassageLayout';
@@ -13,7 +13,7 @@ function App() {
   const [book, setBook] = useState('');
   const [chapter, setChapter] = useState(0);
   const [maxChapter, setMaxChapter] = useState(0);
-  const [reference, setReference] = useState({ book: 'Revelation', chapter: 11 });
+  const [reference, setReference] = useState({ book: '', chapter: '' });
   const [showPopup, setShowPopup] = useState(true);
 
   const updateReference = (book, chapter) => {
@@ -59,18 +59,22 @@ function App() {
   }
 
   return (
+    <BrowserRouter>
     <div className="App">
       <header className="App-header">
-        <ChevronIcon direction="left" handleClick={handleLeft} />
         <Reference book={reference.book} chapter={reference.chapter} popupSetReference={popupSetReference} />
-        { showPopup ? (<Popup width="300" height="275">
+        { showPopup ? (<Popup captureClick={() => { setShowPopup(false) }} width="300" height="275">
           { !book ? <Autocomplete style={autoCompleteStyle} prompt={'Book'} setSelection={setSelection} data={Object.keys(bookData)} /> : null }
           { !chapter && book > '' ? <SelectInteger setInteger={setInteger} maxValue={maxChapter} /> : null }
         </Popup>) : null }
-        <ChevronIcon direction="right" handleClick={handleRight} />
       </header>
       <PassageLayout reference={updateReference} book={book} chapter={chapter} />
+      <footer>
+        <ChevronIcon direction="left" handleClick={handleLeft} />
+        <ChevronIcon direction="right" handleClick={handleRight} />
+      </footer>
     </div>
+    </BrowserRouter>
   );
 }
 
