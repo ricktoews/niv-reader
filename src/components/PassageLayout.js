@@ -1,32 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-/*
-function PassageSelector(props) {
-  const [book, setBook] = useState('');
-  const [chapter, setChapter] = useState('');
-
-  const handleBookInput = e => {
-    var el = e.currentTarget;
-    var name = el.value;
-    setBook(name);
-  };
-
-  const handleChapterInput = e => {
-    var el = e.currentTarget;
-    setChapter(el.value);
-  };
-
-  const handleSelect = e => {
-    props.select(book, chapter);
-  };
-
-  return <div className="passage-selector">
-  </div>;
-}
-*/
-
 function Verse(props) {
-  return <div style={{display: 'flex' }}>
+  return <div className="verse-wrapper">
     <div className="verse-ref">{props.verse}</div> <div className="verse-text">{props.text}</div>
   </div>;
 }
