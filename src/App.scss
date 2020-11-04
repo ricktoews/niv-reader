@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
 
 .App {
 }
@@ -6,6 +7,20 @@
 .App-header {
   position: fixed;
   top: 0;
+  width: 100vw;
+  background-color: #282c34;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(20px + 2vmin);
+  color: white;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
   width: 100vw;
   background-color: #282c34;
   height: 60px;
@@ -41,6 +56,7 @@
 .passage-wrapper {
   margin: 20px;
   margin-top: 80px;
+  margin-bottom: 60px;
 
   font-family: Roboto;
   font-size: 1.0em;
@@ -71,7 +87,33 @@
   }
 }
 
-/* ChevronIcon */
+
+
+/*
+    Popup
+*/
+.popup-container {
+  z-index: 50;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+//	backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+}
+
+.popup {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+/* 
+    ChevronIcon 
+*/
 .chevron {
   width: 50px;
   height: 50px;
@@ -84,3 +126,76 @@
   align-items: center;
 }
 
+.chevron-left {
+  transform: rotate(180deg);
+}
+
+
+
+/* 
+    Autocomplete 
+*/
+.autocomplete-input {
+  font-size:1em;
+  width: 6em;
+  &:focus {
+    outline: none;
+  }
+}
+
+.autocomplete-matches {
+  position:absolute;
+  top:20px;
+  left:0;
+//  background-color:#09f;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  li:first-child {
+    border-top: 1px solid gray;
+  }
+
+  li {
+    background-color: #8D66B9;
+    color: white;
+    margin: 3px;
+    border-radius: 30px;
+    padding: .25em .5em;
+    font-size: 1em;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+  }
+}
+
+
+
+/*
+    SelectInteger 
+*/
+.select-integer-wrapper {
+  height: 72vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start; // YES!!
+}
+
+.integer-element {
+  border-radius: 50%;
+  background-color: #8D66B9;
+}
+
+.integer-element {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  font-size: 1em;
+  margin: 5px;
+}

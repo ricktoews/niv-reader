@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Autocomplete.scss';
+//import './Autocomplete.scss';
 
 function Autocomplete(props) {
 	const [matches, setMatches] = useState([]);

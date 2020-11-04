@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './SelectInteger.scss';
 
 function IntegerElement(props) {
 	const handleSelectInteger = e => {
@@ -20,8 +19,8 @@ function SelectInteger(props) {
 
 	return (
 	<div>
-	  <div style={{ height: '300px', overflowY: 'scroll', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-	  {integers.map(i => <IntegerElement setInteger={props.setInteger} item={i} />)}
+	  <div className="select-integer-wrapper">
+ 	    {integers.map(i => <IntegerElement setInteger={props.setInteger} item={i} />)}
 	  </div>
 	</div>
 	);
