@@ -7,7 +7,7 @@ function ChevronIcon(props) {
     props.handleClick();
   };
 
-  const chevronImg = <img srcset="./chevron-right.svg 4x" style={{}} width="30" height="30" />;
+  const chevronImg = <img srcset="/chevron-right.svg 4x" style={{}} width="30" height="30" />;
 
   return (
     <div onClick={handleClick} className={`chevron chevron-${direction}`}>
