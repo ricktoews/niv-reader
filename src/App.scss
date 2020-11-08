@@ -230,7 +230,7 @@ footer {
 */
 .qwerty-container {
   position: fixed;
-  bottom: 60px;
+  bottom: 0px;
   width: 100vw;
   background-color:gray;
   display: flex;
@@ -239,7 +239,7 @@ footer {
 
   div[class^="qwerty-row-"] {
     width:100%;
-    margin: 5px 0;
+    margin: 1px 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -247,10 +247,10 @@ footer {
 
   .qwerty-letter {
     font-size: .8em;
-    width: 30px;
-    height: 30px;
-    margin-top: 4px;
-    margin-right: 5px;
+    width: 35px;
+    height: 35px;
+    margin-top: 1px;
+    margin-right: 3px;
     border-radius: 50%;
     border: 1px solid white;
     background-color: orange;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const qwertyLetters = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'];
+const qwertyLetters = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM', '123456789'];
 
 function Qwerty(props) {
 	useEffect(() => {

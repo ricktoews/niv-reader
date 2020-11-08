@@ -2,15 +2,19 @@ import React, { useEffect, useState } from 'react';
 import Qwerty from './Qwerty';
 
 function stripPunctuation(str) {
-	var stripped = str.replace(/\W/g, '*');
+	var stripped = str.replace(/(\d),(\d)/g, '$1QQ$2');
+	stripped = stripped.replace(/(\w)'(\w)/g, '$1XX$2');
+	stripped = stripped.replace(/\W/g, '*');
 	stripped = stripped.replace(/\*+/g, ' ');
+	stripped = stripped.replace(/QQ/g, ',');
+	stripped = stripped.replace(/XX/g, "'");
 	return stripped;
 }
 
 function compileWordList(text) {
 	text = text.replace('--', ' ');
 	var stripped = stripPunctuation(text);
-	var words = stripped.toLowerCase().trim().split(' ');
+	var words = stripped.trim().split(' ');
 
 	return words;
 }
@@ -34,6 +38,9 @@ function MemorizePopup(props) {
 	const handleClick = e => {
 		var el = e.target;
 		if (el.className === 'memorize-container') {
+			setCurrentWords([]);
+			setWordList([]);
+			setFirstLetter([]);
 			props.setShowMemPopup(false);
 		}
 	}
@@ -44,9 +51,9 @@ function MemorizePopup(props) {
 
 		var currentLetterNdx = letters.length;
 console.log('checking letter', wordList, wordList[currentLetterNdx]);
-		var textWordFirstLetter = wordList[currentLetterNdx][0].toUpperCase();
+		var textWordFirstLetter = wordList[currentLetterNdx] && wordList[currentLetterNdx][0];
 
-		if (letter === textWordFirstLetter) {
+		if (textWordFirstLetter && letter.toLowerCase() === textWordFirstLetter.toLowerCase()) {
 			letters.push(letter);
 			setFirstLetter(letters);
 			setCurrentWords(wordList.slice(0, currentLetterNdx + 1));
