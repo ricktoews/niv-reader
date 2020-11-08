@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Qwerty from './Qwerty';
+import Abcde from './Abcde';
+import ToolButtons from './ToolButtons';
 
 function stripPunctuation(str) {
 	var stripped = str.replace(/(\d),(\d)/g, '$1QQ$2');
@@ -45,6 +47,16 @@ function MemorizePopup(props) {
 		}
 	}
 
+	const textDone = () => {
+		setCurrentWords([]);
+		setWordList([]);
+		setFirstLetter([]);
+	}
+
+	const textHelp = () => {
+		console.log('Get help here.');
+	}
+
 
 	const handleLetter = letter => {
 		var letters = firstLetter.slice(0);
@@ -66,9 +78,10 @@ console.log('checking letter', wordList, wordList[currentLetterNdx]);
 	<div style={{display: showPopup ? 'flex' : 'none' }} onClick={handleClick} className="memorize-container">
 	  <div className="memorize-popup">
 	    <div className="memorize-playground">
-	      { currentWords.map((word, key) => <span style={{ padding: '5px' }}>{word}</span>) }
+	      { currentWords.map((word, key) => <span key={key} style={{ padding: '5px' }}>{word}</span>) }
 	    </div>  
-	    <Qwerty letterHandler={handleLetter} />
+	    <ToolButtons textDone={textDone} textHelp={textHelp} include={{done: true, help: true}} />
+	    <Abcde letterHandler={handleLetter} />
 	  </div>
 	</div>
 	);

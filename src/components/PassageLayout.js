@@ -26,8 +26,8 @@ function PassageLayout(props) {
   return <div className="content-wrapper">
     <MemorizePopup selectedText={selectedText} setShowMemPopup={setShowMemPopup} show={showMemPopup} />
     <div className="passage-wrapper">
-    { passage.map(p => {
-        return <Verse setSelectedText={setSelectedText} setShowMemPopup={setShowMemPopup} book={p.book} chapter={p.chapter} verse={p.verse} text={p.text} />
+    { passage.map((p, key) => {
+        return <Verse key={key} setSelectedText={setSelectedText} setShowMemPopup={setShowMemPopup} book={p.book} chapter={p.chapter} verse={p.verse} text={p.text} />
     })}
     </div>
   </div>;
