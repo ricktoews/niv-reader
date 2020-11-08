@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
-
-function Verse(props) {
-  return <div className="verse-wrapper">
-    <div className="verse-ref">{props.verse}</div> <div className="verse-text">{props.text}</div>
-  </div>;
-}
-
+import MemorizePopup from './MemorizePopup';
+import Verse from './Verse';
 
 function PassageLayout(props) {
   const [passage, setPassage] = useState([]);
   const { book, chapter } = props;
+  const [selectedText, setSelectedText] = useState(''); 
+  const [showMemPopup, setShowMemPopup] = useState(false);
 
   useEffect(() => {
     if (book && chapter) {
@@ -27,9 +24,10 @@ function PassageLayout(props) {
   }
 
   return <div className="content-wrapper">
+    <MemorizePopup selectedText={selectedText} setShowMemPopup={setShowMemPopup} show={showMemPopup} />
     <div className="passage-wrapper">
     { passage.map(p => {
-        return <Verse book={p.book} chapter={p.chapter} verse={p.verse} text={p.text} />
+        return <Verse setSelectedText={setSelectedText} setShowMemPopup={setShowMemPopup} book={p.book} chapter={p.chapter} verse={p.verse} text={p.text} />
     })}
     </div>
   </div>;

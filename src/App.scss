@@ -188,3 +188,77 @@ footer {
   font-size: 1em;
   margin: 5px;
 }
+
+
+/*
+    MemorizePopup
+*/
+.memorize-container {
+  z-index: 50;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+
+  .memorize-popup {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    width: 300px;
+    min-height: 100px;
+    border: 1px solid green;
+    border-radius: 10px;
+    background-color: white;
+
+    .memorize-playground {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      align-content: flex-start;
+    }
+  }
+}
+
+/*
+    QWERTY Component
+*/
+.qwerty-container {
+  position: fixed;
+  bottom: 60px;
+  width: 100vw;
+  background-color:gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  div[class^="qwerty-row-"] {
+    width:100%;
+    margin: 5px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .qwerty-letter {
+    font-size: .8em;
+    width: 30px;
+    height: 30px;
+    margin-top: 4px;
+    margin-right: 5px;
+    border-radius: 50%;
+    border: 1px solid white;
+    background-color: orange;
+    color: $button-text-color;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+}
