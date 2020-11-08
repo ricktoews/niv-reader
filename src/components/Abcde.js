@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-const qwertyLetters = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM', '123456789'];
+const qwertyLetters = ['ABCDEFG', 'HIJKLMN', 'OPQRSTU', 'VWXYZ12', '3456789'];
 
-function Qwerty(props) {
+function Abcde(props) {
 	useEffect(() => {
 	}, []);
 
@@ -25,4 +25,5 @@ function Qwerty(props) {
 	);
 }
 
-export default Qwerty;
+export default Abcde;
+
