@@ -13,7 +13,7 @@ function Main(props) {
   const { param_book, param_chapter } = props.match.params;
 
   const [book, setBook] = useState(param_book || '');
-  const [chapter, setChapter] = useState(param_chapter || 0);
+  const [chapter, setChapter] = useState(param_chapter || '');
   const [maxChapter, setMaxChapter] = useState(0);
   const [reference, setReference] = useState({ book, chapter });
   const [showPopup, setShowPopup] = useState(!book);

@@ -8,6 +8,7 @@ function Verse(props) {
   // Both of these functions directly set the state in the PassageLayout component.
   const handleClick = e => {
     props.setSelectedText(props.text);
+    props.setSelectedVerse(props.verse);
     props.setShowMemPopup(true);
   };
 

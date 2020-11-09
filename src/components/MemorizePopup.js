@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Qwerty from './Qwerty';
 import Abcde from './Abcde';
-import ToolButtons from './ToolButtons';
 
 function stripPunctuation(str) {
 	var stripped = str.replace(/(\d),(\d)/g, '$1QQ$2');
@@ -27,10 +26,18 @@ function MemorizePopup(props) {
 	const [ showPopup, setShowPopup ] = useState(props.show);
 	const [ wordList, setWordList ] = useState([]);
 	const [ currentWords, setCurrentWords ] = useState([]);
+	const [ verseRef, setVerseRef ] = useState('');
 
 	useEffect(() => {
+		setVerseRef(`${props.book} ${props.chapter}:${props.selectedVerse}`);
 		setWordList(compileWordList(props.selectedText));
 	}, [props.selectedText]);
+
+	// This keeps the memorize-playground area scrolled to the bottom, keeping up with the words entered.
+	useEffect(() => {
+		let el = document.querySelector('.memorize-playground');
+		el.scrollTop = el.scrollHeight;
+	}, [currentWords]);
 
 	useEffect(() => {
 		setShowPopup(props.show);
@@ -47,22 +54,10 @@ function MemorizePopup(props) {
 		}
 	}
 
-	const textDone = () => {
-		setCurrentWords([]);
-		setWordList([]);
-		setFirstLetter([]);
-	}
-
-	const textHelp = () => {
-		console.log('Get help here.');
-	}
-
-
 	const handleLetter = letter => {
 		var letters = firstLetter.slice(0);
 
 		var currentLetterNdx = letters.length;
-console.log('checking letter', wordList, wordList[currentLetterNdx]);
 		var textWordFirstLetter = wordList[currentLetterNdx] && wordList[currentLetterNdx][0];
 
 		if (textWordFirstLetter && letter.toLowerCase() === textWordFirstLetter.toLowerCase()) {
@@ -78,10 +73,10 @@ console.log('checking letter', wordList, wordList[currentLetterNdx]);
 	<div style={{display: showPopup ? 'flex' : 'none' }} onClick={handleClick} className="memorize-container">
 	  <div className="memorize-popup">
 	    <div className="memorize-playground">
+              <div className="text-label">{verseRef}</div>
 	      { currentWords.map((word, key) => <span key={key} style={{ padding: '5px' }}>{word}</span>) }
 	    </div>  
-	    <ToolButtons textDone={textDone} textHelp={textHelp} include={{done: true, help: true}} />
-	    <Abcde letterHandler={handleLetter} />
+	    <Qwerty letterHandler={handleLetter} setCurrentWords={setCurrentWords} setWordList={setWordList} setFirstLetter={setFirstLetter} nextVerse={props.nextVerse} />
 	  </div>
 	</div>
 	);
