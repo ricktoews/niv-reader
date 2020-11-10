@@ -8,6 +8,7 @@ function Qwerty(props) {
 	}, []);
 
 	const textDone = () => {
+		props.setFragment('');
 		props.setCurrentWords([]);
 		props.setWordList([]);
 		props.setFirstLetter([]);
@@ -23,7 +24,6 @@ console.log('calling nextVerse');
 	const handleClick = e => {
 		e.preventDefault();
 		var el = e.currentTarget;
-		console.log('key clicked', el.dataset.letter);
 		props.letterHandler(el.dataset.letter);
 	};
 
