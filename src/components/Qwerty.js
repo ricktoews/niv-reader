@@ -16,8 +16,13 @@ console.log('calling nextVerse');
 		props.nextVerse();
 	}
 
-	const textHelp = () => {
+	const textReplay = () => {
+		props.setFragment('');
+		props.setCurrentWords([]);
+		props.setWordList([]);
+		props.setFirstLetter([]);
 		console.log('Get help here.');
+		props.replayVerse();
 	}
 
 
@@ -29,7 +34,7 @@ console.log('calling nextVerse');
 
 	return (
         <div className="keyboard-wrapper">
-	  <ToolButtons textDone={textDone} textHelp={textHelp} include={{done: true, help: true}} />
+	  <ToolButtons textDone={textDone} textReplay={textReplay} include={{done: true, help: true}} />
 	<div className="qwerty-container">
 	  {qwertyLetters.map((row, rowKey) => {
 	    let letters = row.split('');
