@@ -97,7 +97,7 @@ function MemorizePopup(props) {
 	    </div>  
 	  </div>
       <LargeLetter letter={largeLetter} correct={largeLetterCorrect} />
-      <Qwerty letterHandler={handleLetter} setFragment={setFragment} setCurrentWords={setCurrentWords} setWordList={setWordList} setFirstLetter={setFirstLetter} nextVerse={props.nextVerse} />
+      <Qwerty letterHandler={handleLetter} setFragment={setFragment} setCurrentWords={setCurrentWords} setWordList={setWordList} setFirstLetter={setFirstLetter} nextVerse={props.nextVerse} replayVerse={props.replayVerse} />
 	</div>
 	);
 }
