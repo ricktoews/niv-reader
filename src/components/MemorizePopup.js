@@ -36,7 +36,6 @@ function MemorizePopup(props) {
 	const [ largeLetter, setLargeLetter ] = useState('');
 	const [ largeLetterCorrect, setLargeLetterCorrect ] = useState(false);
 	const [ firstLetter, setFirstLetter ] = useState([]);
-	const [ showPopup, setShowPopup ] = useState(props.show);
 	const [ wordList, setWordList ] = useState([]);
 	const [ currentWords, setCurrentWords ] = useState([]);
 	const [ verseRef, setVerseRef ] = useState('');
@@ -52,10 +51,6 @@ function MemorizePopup(props) {
 		let el = document.querySelector('.memorize-playground');
 		el.scrollTop = el.scrollHeight;
 	}, [currentWords]);
-
-	useEffect(() => {
-		setShowPopup(props.show);
-	}, [props.show]);
 
 
 	const handleClick = e => {
@@ -89,7 +84,7 @@ function MemorizePopup(props) {
 	}
 
 	return (
-	<div style={{display: showPopup ? 'flex' : 'none' }} onClick={handleClick} className="memorize-container">
+	<div style={{display: props.showMemPopup ? 'flex' : 'none' }} onClick={handleClick} className="memorize-container">
 	  <div className="memorize-popup">
 	    <div className="memorize-playground">
           <div className="text-label">{verseRef}</div>
