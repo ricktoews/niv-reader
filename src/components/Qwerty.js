@@ -12,16 +12,13 @@ function Qwerty(props) {
 		props.setCurrentWords([]);
 		props.setWordList([]);
 		props.setFirstLetter([]);
-console.log('calling nextVerse');
 		props.nextVerse();
 	}
 
 	const textReplay = () => {
 		props.setFragment('');
 		props.setCurrentWords([]);
-		props.setWordList([]);
 		props.setFirstLetter([]);
-		console.log('Get help here.');
 		props.replayVerse();
 	}
 

@@ -7,7 +7,7 @@ function LargeLetter(props) {
 		classes.push('correct');
 	}
 
-	console.log('LargeLatter', props, classes);
+//	console.log('LargeLatter', props, classes);
 
 	return (
 	<div style={{ display: props.letter ? 'flex' : 'none' }} className="large-letter">

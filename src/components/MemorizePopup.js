@@ -2,45 +2,30 @@ import React, { useEffect, useState } from 'react';
 import Qwerty from './Qwerty';
 import Abcde from './Abcde';
 import LargeLetter from './LargeLetter';
-
-function stripPunctuation(str) {
-	var stripped = str.replace(/(\d),(\d)/g, '$1QQ$2');
-	stripped = stripped.replace(/(\w)'(\w)/g, '$1XX$2');
-	stripped = stripped.replace(/\W/g, '*');
-	stripped = stripped.replace(/\*+/g, ' ');
-	stripped = stripped.replace(/QQ/g, ',');
-	stripped = stripped.replace(/XX/g, "'");
-	return stripped;
-}
-
-function compileWordList(text) {
-	text = text.replace('--', ' ');
-	var stripped = stripPunctuation(text);
-	var words = stripped.trim().split(' ');
-
-	return words;
-}
-
-
-function constructFragment(words, verse) {
-	var reStr = '(\\W*' + words.join('\\W+') + '\\W*)';
-	var re = new RegExp(reStr);
-	var fragMatch = re.exec(verse);
-	var frag = fragMatch ? fragMatch[1] : '';
-
-	return frag;
-}
-
+import { constructFragment, compileWordList } from '../utils/mem';
 
 function MemorizePopup(props) {
+	// wordList should persist until a new verse is selected.
+	const [ wordList, setWordList ] = useState([]);
+
 	const [ largeLetter, setLargeLetter ] = useState('');
 	const [ largeLetterCorrect, setLargeLetterCorrect ] = useState(false);
 	const [ firstLetter, setFirstLetter ] = useState([]);
-	const [ wordList, setWordList ] = useState([]);
 	const [ currentWords, setCurrentWords ] = useState([]);
 	const [ verseRef, setVerseRef ] = useState('');
 	const [ fragment, setFragment ] = useState('');
 
+	useEffect(() => {
+		console.log('MemorizePopup, just set wordList', wordList);
+	}, [wordList]);
+	useEffect(() => {
+		if (props.showMemPopup) {
+			setFragment('');
+			setCurrentWords([]);
+			setFirstLetter([]);
+		}
+	}, [props.showMemPopup]);
+ 
 	useEffect(() => {
 		setVerseRef(`${props.book} ${props.chapter}:${props.selectedVerse}`);
 		setWordList(compileWordList(props.selectedText));
@@ -53,12 +38,11 @@ function MemorizePopup(props) {
 	}, [currentWords]);
 
 
-	const handleClick = e => {
+	const handleClickCloseMemPopup = e => {
 		var el = e.target;
 		if (el.className === 'memorize-container') {
 			setFragment('');
 			setCurrentWords([]);
-			setWordList([]);
 			setFirstLetter([]);
 			props.setShowMemPopup(false);
 		}
@@ -71,6 +55,7 @@ function MemorizePopup(props) {
 		var textWordFirstLetter = wordList[currentLetterNdx] && wordList[currentLetterNdx][0];
 		setLargeLetter(letter);
 
+			console.log('word list', wordList);
 		if (textWordFirstLetter && letter.toLowerCase() === textWordFirstLetter.toLowerCase()) {
 			setLargeLetterCorrect(true);
 			letters.push(letter);
@@ -84,7 +69,7 @@ function MemorizePopup(props) {
 	}
 
 	return (
-	<div style={{display: props.showMemPopup ? 'flex' : 'none' }} onClick={handleClick} className="memorize-container">
+	<div style={{display: props.showMemPopup ? 'flex' : 'none' }} onClick={handleClickCloseMemPopup} className="memorize-container">
 	  <div className="memorize-popup">
 	    <div className="memorize-playground">
           <div className="text-label">{verseRef}</div>
