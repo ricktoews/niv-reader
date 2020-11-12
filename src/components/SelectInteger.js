@@ -20,7 +20,7 @@ function SelectInteger(props) {
 	return (
 	<div>
 	  <div className="select-integer-wrapper">
- 	    {integers.map(i => <IntegerElement setInteger={props.setInteger} item={i} />)}
+ 	    {integers.map((i, key) => <IntegerElement key={key} setInteger={props.setInteger} item={i} />)}
 	  </div>
 	</div>
 	);

@@ -5,7 +5,6 @@ import Verse from './Verse';
 function PassageLayout(props) {
   const [passage, setPassage] = useState([]);
   const { book, chapter } = props;
-  const [showMemPopup, setShowMemPopup] = useState(false);
   const [selectedText, setSelectedText] = useState(''); 
   const [selectedVerse, setSelectedVerse] = useState(''); 
 
@@ -43,10 +42,25 @@ function PassageLayout(props) {
   }
 
   return <div className="content-wrapper">
-    <MemorizePopup selectedText={selectedText} selectedVerse={selectedVerse} book={book} chapter={chapter} setShowMemPopup={setShowMemPopup} nextVerse={nextVerse} replayVerse={replayVerse} show={showMemPopup} />
+    <MemorizePopup 
+      selectedText={selectedText} 
+      selectedVerse={selectedVerse} 
+      book={book} 
+      chapter={chapter}
+      nextVerse={nextVerse} 
+      replayVerse={replayVerse} 
+      setShowMemPopup={props.setShowMemPopup} 
+      showMemPopup={props.showMemPopup} />
     <div className="passage-wrapper">
     { passage.map((p, key) => {
-        return <Verse key={key} setSelectedVerse={setSelectedVerse} setSelectedText={setSelectedText} setShowMemPopup={setShowMemPopup} book={p.book} chapter={p.chapter} verse={p.verse} text={p.text} />
+        return <Verse key={key}
+                 setSelectedVerse={setSelectedVerse}
+                 setSelectedText={setSelectedText}
+                 setShowMemPopup={props.setShowMemPopup}
+                 book={p.book}
+                 chapter={p.chapter}
+                 verse={p.verse}
+                 text={p.text} />
     })}
     </div>
   </div>;
