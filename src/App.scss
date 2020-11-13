@@ -289,10 +289,12 @@ footer {
 }
 
 .large-letter {
+	opacity: 1;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
+
 .letter-container {
 	opacity: 1;
 	width: 100px;
@@ -308,11 +310,17 @@ footer {
 	&.correct {
 		background-color: green;
 	}
-	&.fade-out {
+
+	&.start-trans {
+		display: flex;
 		opacity: 0;
-		transition-delay: 1s;
+		transition-delay: .5s;
 		transition-duration: 1s;
-    }
+
+	&.end-trans {
+		display: none;
+	}
+	}
 }
 
 
