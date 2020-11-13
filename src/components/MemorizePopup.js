@@ -16,9 +16,6 @@ function MemorizePopup(props) {
 	const [ fragment, setFragment ] = useState('');
 
 	useEffect(() => {
-		console.log('MemorizePopup, just set wordList', wordList);
-	}, [wordList]);
-	useEffect(() => {
 		if (props.showMemPopup) {
 			setFragment('');
 			setCurrentWords([]);
@@ -55,7 +52,6 @@ function MemorizePopup(props) {
 		var textWordFirstLetter = wordList[currentLetterNdx] && wordList[currentLetterNdx][0];
 		setLargeLetter(letter);
 
-			console.log('word list', wordList);
 		if (textWordFirstLetter && letter.toLowerCase() === textWordFirstLetter.toLowerCase()) {
 			setLargeLetterCorrect(true);
 			letters.push(letter);
@@ -76,7 +72,7 @@ function MemorizePopup(props) {
 	      <div className="text-fragment">{ fragment }</div>
 	    </div>  
 	  </div>
-      <LargeLetter letter={largeLetter} correct={largeLetterCorrect} />
+      <LargeLetter letter={largeLetter} correct={largeLetterCorrect} setLargeLetter={setLargeLetter} />
       <Qwerty letterHandler={handleLetter} setFragment={setFragment} setCurrentWords={setCurrentWords} setWordList={setWordList} setFirstLetter={setFirstLetter} nextVerse={props.nextVerse} replayVerse={props.replayVerse} />
 	</div>
 	);
