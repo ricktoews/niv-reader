@@ -7,7 +7,7 @@ import Reference from './components/Reference';
 import Autocomplete from './components/Autocomplete';
 import SelectInteger from './components/SelectInteger';
 import Popup from './components/Popup';
-const bookData = require('./data/book-data')[0];
+import { books, bookData, getPrevChapter, getNextChapter } from './utils/book-data';
 
 function Main(props) {
   const { param_book, param_chapter } = props.match.params;
@@ -22,10 +22,6 @@ function Main(props) {
     props.history.push('/' + book + '/' + chapter);
     setReference({ book, chapter });
   }
-
-  useEffect(() => {
-console.log('showMemPopup', showMemPopup);
-  }, [showMemPopup]);
 
   const popupSetReference = () => {
     setBook('');
@@ -55,16 +51,20 @@ console.log('showMemPopup', showMemPopup);
     fontSize: '1em'
   };
 
+  const updateNewReference = (newReference) => {
+    setBook(newReference.book);
+    setChapter(newReference.chapter);
+    setReference({ ...newReference });
+  }
+
   const handleLeft = () => {
-    var nextChapter = 1*chapter - 1;
-    setChapter(nextChapter);
-    setReference({ ...reference, chapter: nextChapter });
+    var newReference = getPrevChapter(reference);
+    updateNewReference(newReference);
   }
 
   const handleRight = () => {
-    var nextChapter = 1*chapter + 1;
-    setChapter(nextChapter);
-    setReference({ ...reference, chapter: nextChapter });
+    var newReference = getNextChapter(reference);
+    updateNewReference(newReference);
   }
 
   return (
@@ -74,7 +74,7 @@ console.log('showMemPopup', showMemPopup);
           book={reference.book}
           chapter={reference.chapter} 
           popupSetReference={popupSetReference} />
-        { showPopup ? (<Popup captureClick={() => { setShowPopup(false) }} width="300" height="275">
+        { showPopup ? (<Popup captureClick={() => { setShowPopup(false) }} width="300" height="275" setShowPopup={setShowPopup}>
           { !book ? <Autocomplete style={autoCompleteStyle} prompt={'Book'} setSelection={setSelection} data={Object.keys(bookData)} /> : null }
           { !chapter && book > '' ? <SelectInteger setInteger={setInteger} maxValue={maxChapter} /> : null }
         </Popup>) : null }
