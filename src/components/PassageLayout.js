@@ -34,7 +34,7 @@ function PassageLayout(props) {
 
   const handleSelectPassage = (book, chapter) => {
     props.reference(book, chapter);
-    fetch(`http://memorize.toewsweb.net/rest.php/getpassage/${book}/${chapter}`)
+    fetch(`https://memorize.toewsweb.net/rest.php/getpassage/${book}/${chapter}`)
       .then(res => res.json())
       .then(res => {
         setPassage(res);
